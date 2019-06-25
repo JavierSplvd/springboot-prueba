@@ -28,17 +28,16 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-jersey")
-    compile("org.springframework.boot:spring-boot-starter-tomcat")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.postgresql:postgresql")
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-jersey'
+    compile 'org.springframework.boot:spring-boot-starter-tomcat'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.postgresql:postgresql'
     // HSQLDB for embedded database support
-    compile("org.hsqldb:hsqldb")
-    // Utilities
-    compile("com.google.guava:guava:18.0")
+    compile 'org.hsqldb:hsqldb'
     // Test
-    testCompile("org.assertj:assertj-core:1.7.0")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.0-M4'
+    testCompile 'org.assertj:assertj-core:1.7.0'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
     compile 'org.glassfish.grizzly:grizzly-http-server:2.+'
 }

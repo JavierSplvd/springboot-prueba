@@ -1,40 +1,37 @@
 package com.sbj.dao;
 
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.junit.After;
+import com.sbj.app.Application;
+import com.sbj.entity.Course;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
+import javax.annotation.Resource;
+import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
 public class CourseDAOTest {
 
-    private HttpServer server;
-    private WebTarget target;
+    @Resource
+    private CourseDAO courseDAO;
+
+    private Course course;
+    private List<Course> courses;
+
+    private static final int NUMBER_COURSES = 3;
 
     @Before
-    public void setUp() throws Exception {
-        server = HttpServer.createSimpleServer();
-
-        Client c = ClientBuilder.newClient();
-        target = c.target("http://localhost:8080/");
+    public void setUp(){
+        course = new Course(1, "My Course", "Javier", Course.Levels.INTERMEDIATE, 50);
     }
 
-    @After
-    public void tearDown() throws Exception {
-        server.stop();
-    }
-
-    /**
-     * Test to see that the message "Got it!" is sent in the response.
-     */
     @Test
-    public void testGetIt() {
-        String responseMsg = target.path("api/course/").request().get(String.class);
-        assertEquals("Got it!", responseMsg);
+    public void testDataBase(){
+        courses = courseDAO.getAllCourses();
+        Assert.assertEquals(courses.size(), NUMBER_COURSES);
     }
 }
