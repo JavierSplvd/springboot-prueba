@@ -29,7 +29,7 @@ public class CourseController {
     public ResponseEntity<List<Course>> getAllCourses() {
         System.out.println("GET: getAllCourses");
         List<Course> courses = courseService.getAllCourses();
-        return new ResponseEntity<List<Course>>(courses, HttpStatus.OK);
+        return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
     @GET
@@ -47,14 +47,14 @@ public class CourseController {
         return new ResponseEntity<Course>(course, HttpStatus.OK);
     }
 
-//    @POST
-//    @Path("course")
-//    public ResponseEntity<Void> addCourse(@RequestBody Course course, UriComponentsBuilder builder) {
-//        boolean flag = courseService.addCourse(course);
-//        if (!flag) {
-//            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-//        } else {
-//            return new ResponseEntity<Void>(HttpStatus.CREATED);
-//        }
-//    }
+    @POST
+    @Path("")
+    public ResponseEntity<Void> addCourse(@RequestBody Course course, UriComponentsBuilder builder) {
+        boolean flag = courseService.addCourse(course);
+        if (!flag) {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity<Void>(HttpStatus.CREATED);
+        }
+    }
 }
